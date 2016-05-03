@@ -35,3 +35,8 @@ target_link_libraries (tutorial  ${EXTRA_LIBS})
 
 add_executable(functional1 functional1.cpp)
 add_executable(functional2 functional2.cpp)
+
+# add the install targets
+install (TARGETS Tutorial DESTINATION bin)
+install (FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"
+         DESTINATION include)
