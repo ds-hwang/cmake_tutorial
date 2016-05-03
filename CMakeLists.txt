@@ -53,6 +53,7 @@ check_function_exists (exp HAVE_EXP)
 
 # CTEST
 include(CTest)
+set (CTEST_PROJECT_NAME "Tutorial")
 
 # does the application run
 add_test (TutorialRuns Tutorial 25)
