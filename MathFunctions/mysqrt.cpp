@@ -2,5 +2,7 @@
 #include <math.h>
 
 float mysqrt(float input) {
-	return sqrt(input);
+  if (input < 0)
+    return 0;
+  return sqrt(input);
 }
