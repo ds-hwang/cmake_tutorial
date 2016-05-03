@@ -15,12 +15,12 @@ configure_file (
   "${PROJECT_BINARY_DIR}/TutorialConfig.h"
   )
 
-# should we use our own math functions?
-option (USE_MYMATH "Use tutorial provided math implementation" ON)
-
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
+
+# should we use our own math functions?
+option (USE_MYMATH "Use tutorial provided math implementation" ON)
 
 # add the MathFunctions library?
 #
@@ -29,6 +29,7 @@ if (USE_MYMATH)
   add_subdirectory (MathFunctions)
   set (EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
 endif (USE_MYMATH)
+
 
 add_executable(Tutorial tutorial.cpp)
 target_link_libraries (Tutorial  ${EXTRA_LIBS})
@@ -56,35 +57,27 @@ include(CTest)
 # does the application run
 add_test (TutorialRuns Tutorial 25)
 
-# does it sqrt of 25
-add_test (TutorialComp25 Tutorial 25)
-
-set_tests_properties (TutorialComp25
-  PROPERTIES PASS_REGULAR_EXPRESSION "25 is 5")
-
-# does it handle negative numbers
-add_test (TutorialNegative Tutorial -25)
-set_tests_properties (TutorialNegative
-  PROPERTIES PASS_REGULAR_EXPRESSION "-25 is 0")
-
-# does it handle small numbers
-add_test (TutorialSmall Tutorial 0.0001)
-set_tests_properties (TutorialSmall
-  PROPERTIES PASS_REGULAR_EXPRESSION "0.0001 is 0.01")
-
 # does the usage message work?
 add_test (TutorialUsage Tutorial)
 set_tests_properties (TutorialUsage
   PROPERTIES
-  PASS_REGULAR_EXPRESSION "Usage:.*number")
+  PASS_REGULAR_EXPRESSION "Usage:.*number"
+  )
 
-  #define a macro to simplify adding tests, then use it
+
+#define a macro to simplify adding tests
 macro (do_test arg result)
   add_test (TutorialComp${arg} Tutorial ${arg})
   set_tests_properties (TutorialComp${arg}
-    PROPERTIES PASS_REGULAR_EXPRESSION ${result})
+    PROPERTIES PASS_REGULAR_EXPRESSION ${result}
+    )
 endmacro (do_test)
 
 # do a bunch of result based tests
+do_test (4 "4 is 2")
+do_test (9 "9 is 3")
+do_test (5 "5 is 2.236")
+do_test (7 "7 is 2.645")
 do_test (25 "25 is 5")
 do_test (-25 "-25 is 0")
+do_test (0.0001 "0.0001 is 0.01")

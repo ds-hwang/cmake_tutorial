@@ -23,11 +23,11 @@ int main(int argc, char* argv[]) {
   double outputValue = sqrt(inputValue);
 #endif
 
-  // if we have both log and exp then use them
-#if defined (HAVE_LOG) && defined (HAVE_EXP)
-  double result = exp(log(inputValue)*0.5);
+// if we have both log and exp then use them
+#if defined(HAVE_LOG) && defined(HAVE_EXP)
+  double result = exp(log(inputValue) * 0.5);
   fprintf(stderr, "The exp(log(%g)) is %g\n", inputValue, result);
-#endif // otherwise use an iterative approach
+#endif  // otherwise use an iterative approach
 
   fprintf(stdout, "The square root of %g is %g\n", inputValue, outputValue);
   return 0;
