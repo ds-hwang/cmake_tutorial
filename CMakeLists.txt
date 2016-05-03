@@ -41,6 +41,16 @@ install (TARGETS Tutorial DESTINATION bin)
 install (FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"
          DESTINATION include)
 
+
+
+# does this system provide the log and exp functions?
+include (CheckFunctionExists)
+check_function_exists (log HAVE_LOG)
+check_function_exists (exp HAVE_EXP)
+
+
+
+# CTEST
 include(CTest)
 
 # does the application run
