@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(hello)
+project(Hello)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
 set(CMAKE_BUILD_TYPE Debug)
@@ -31,7 +31,7 @@ if (USE_MYMATH)
 endif (USE_MYMATH)
 
 add_executable(tutorial tutorial.cpp)
-target_link_libraries (Tutorial  ${EXTRA_LIBS})
+target_link_libraries (tutorial  ${EXTRA_LIBS})
 
 add_executable(functional1 functional1.cpp)
 add_executable(functional2 functional2.cpp)
